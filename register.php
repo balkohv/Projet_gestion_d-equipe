@@ -11,6 +11,8 @@
             <a href="ajoutermatch.php">Ajouter un match</a>
             <a href="list_joueur.php">Liste des joueurs</a>
             <a href="list_match.php">Liste des matchs</a>
+            <a href="login.php">connexion</a>
+            <a href="register.php">nouveau compte</a>
         </div>
         <h1>register</h1>
         <form action="enregister_user.php" method="post">

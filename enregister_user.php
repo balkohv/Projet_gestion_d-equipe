@@ -1,27 +1,34 @@
 <html>
     <head>
         <title>register</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="style.css">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         
     </body>
 </html>
 <?php
-    if (isset($_POST['submit'])) {
+    try{
         $db = new PDO('mysql:host=localhost;port=3306;dbname=gestion_apero','root','root');
-        $query = $db->prepare('INSERT INTO user (nom_utilisateur, mdp,prenom) VALUES (:log, :pass, :prenom)');
+    }
+    catch (Exception $e)
+    {
+            die('Erreur : ' . $e->getMessage());
+    }
+    if (isset($_POST['submit'])) {
+        $login = $_POST['login'];
+        $password = hash("sha256",$_POST['password']);
+        $prenom = $_POST['prenom'];
+        $query = $db->prepare('INSERT INTO user(nom_utilisateur, mdp, prenom) VALUES (:nom_utilisateur, :mdp, :prenom)');
         if (!$query){
             die('Erreur : ' . $query.errorInfo());
         }
-        echo(password_hash($_post['password'], PASSWORD_DEFAULT));
         $query->execute(array(
-            'log' => $_POST['login'],
-            'pass' => password_hash($_post['password'], PASSWORD_DEFAULT),
-            'prenom' => $_POST['prenom'],
-        ));
-        echo("ici");
+            'nom_utilisateur' => $login,
+            'mdp' => $password,
+            'prenom' => $prenom,
+            ));
         header('Location: login.php');
     }
     else {

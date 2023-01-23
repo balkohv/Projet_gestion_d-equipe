@@ -1,4 +1,7 @@
 <?php
+    if (!isset($_COOKIE['token'])){
+        header('Location: login.php');
+    }
     try{
         $bdd = new PDO('mysql:host=localhost;port=3306;dbname=gestion_apero','root','root');
     }
@@ -82,6 +85,7 @@
         <a href="ajoutermatch.php">Ajouter un match</a>
         <a href="list_joueur.php">Liste des joueurs</a>
         <a href="list_match.php">Liste des matchs</a>
+        <a href="logout.php">deconnexion</a>
     </div>
     <h1>acceuil</h1>
     <a href="javascript:history.go(-1)">Retour</a>

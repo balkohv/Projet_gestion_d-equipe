@@ -1,3 +1,8 @@
+<?php
+    if (!isset($_COOKIE['token'])){
+        header('Location: login.php');
+    }
+?>
 <header>
     <title>Ajouter un joueur</title>
     <meta charset="utf-8">
@@ -10,6 +15,7 @@
         <a href="ajoutermatch.php">Ajouter un match</a>
         <a href="list_joueur.php">Liste des joueurs</a>
         <a href="list_match.php">Liste des matchs</a>
+        <a href="logout.php">deconnexion</a>
     </div>
     <h1>list match</h1>
     <table>

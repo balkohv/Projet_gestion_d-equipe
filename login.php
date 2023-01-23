@@ -11,14 +11,19 @@
             <a href="ajoutermatch.php">Ajouter un match</a>
             <a href="list_joueur.php">Liste des joueurs</a>
             <a href="list_match.php">Liste des matchs</a>
+            <a href="login.php">connexion</a>
+            <a href="register.php">nouveau compte</a>
         </div>
         <h1>login</h1>
-        <form action="login.php" method="post">
+        <form action="connexion.php" method="post">
             <label for="login">login</label>
             <input type="text" name="login" id="login">
             <label for="password">password</label>
             <input type="password" name="password" id="password">
             <input type="submit" name="submit" value="login">
         </form>
+        <?php 
+                echo($_COOKIE['token']);
+        ?>
     </body>
 </html>
