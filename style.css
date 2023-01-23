@@ -1,0 +1,26 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+.navbar{
+    display:inline-table;
+    height: 5vh;
+    width: 100vw;
+    background-color: rgb(58, 58, 58);
+}
+
+.navbar > a{
+    margin-right: 3vw;
+    color:#fff;
+    text-decoration: none;   
+}
+
+.list_joueur_match{
+    display:block;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
