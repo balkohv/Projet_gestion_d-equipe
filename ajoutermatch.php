@@ -20,7 +20,7 @@
         <div class="list_joueur_match">
             <h3>joueur participant</h3>
             <?php
-                $db = new PDO('mysql:host=localhost;port=3307;dbname=gestion_apero','user','root');
+                $db = new PDO('mysql:host=localhost;port=3306;dbname=gestion_apero','root','root');
                 $query = $db->query('SELECT * FROM joueur');
                 while ($data = $query->fetch()) {
                     echo '<br><input type="checkbox" name="joueur" value="' . $data['id_joueur'] . '">' . $data['nom'] . ' ' . $data['prenom'] ;
