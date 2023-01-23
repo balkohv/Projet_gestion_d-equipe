@@ -6,7 +6,7 @@
 <header>
     <title>liste joueur</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </header>
 <body>
     <div class="navbar">
@@ -18,7 +18,7 @@
         <a href="logout.php">deconnexion</a>
     </div>
     <h1>liste joueur</h1>
-    <table>
+    <table class="tableau">
         <tr>
             <th>nom</th>
             <th>prenom</th>
@@ -39,7 +39,7 @@
             }
             $req = $bdd->query('SELECT * FROM joueur');
             while ($donnees = $req->fetch()){
-                echo '<tr>';
+                echo '<tr  class="ligne">';
                 echo '<td>' . $donnees['nom'] . '</td>';
                 echo '<td>' . $donnees['prenom'] . '</td>';
                 echo '<td>' . $donnees['date_naissance'] . '</td>';
