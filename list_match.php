@@ -18,7 +18,7 @@
         <a href="logout.php">deconnexion</a>
     </div>
     <h1>list match</h1>
-    <table>
+    <table  class="tableau">
         <tr>
             <th>date_heure</th>
             <th>lieu</th>
@@ -29,7 +29,7 @@
             $db = new PDO('mysql:host=localhost;port=3306;dbname=gestion_apero','root','root');
             $query = $db->query('SELECT * FROM rencontre');
             while ($data = $query->fetch()) {
-                echo '<tr>';
+                echo '<tr class="ligne" id="' . $donnees['id_rencontre'] . '">';
                 echo '<td>' . $data['date_heure'] . '</td>';
                 echo '<td>' . $data['lieu'] . '</td>';
                 echo '<td>' . $data['equipe_adverse'] . '</td>';

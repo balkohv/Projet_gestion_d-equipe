@@ -20,14 +20,14 @@
     <h1>liste joueur</h1>
     <table class="tableau">
         <tr>
-            <th>nom</th>
-            <th>prenom</th>
-            <th>date de naissance</th>
-            <th>taille</th>
-            <th>poids</th>
-            <th>poste preferer</th>
-            <th>points sur le permis</th>
-            <th>photo du permis</th>
+            <td>nom</td>
+            <td>prenom</td>
+            <td>date de naissance</td>
+            <td>taille</td>
+            <td>poids</td>
+            <td>poste preferer</td>
+            <td>points sur le permis</td>
+            <td>photo du permis</td>
         </tr>
         <?php
             try{

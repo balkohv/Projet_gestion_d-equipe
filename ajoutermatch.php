@@ -23,13 +23,18 @@
         <input type="text" name="lieu" placeholder="lieu">
         <input type="text" name="adverse" placeholder="equipe adverse" >
         <input type="datetime-local" name="retour" placeholder="heure de retour">
+        <input type="checkbox" name="victoire" placeholder="victoire">
         <div class="list_joueur_match">
             <h3>joueur participant</h3>
             <?php
                 $db = new PDO('mysql:host=localhost;port=3306;dbname=gestion_apero','root','root');
                 $query = $db->query('SELECT * FROM joueur');
                 while ($data = $query->fetch()) {
-                    echo '<br><input type="checkbox" name="joueur" value="' . $data['id_joueur'] . '">' . $data['nom'] . ' ' . $data['prenom'] ;
+                    echo '<br><input class="checkbx" type="checkbox" name="joueur' . $data['id_joueur'] . '" id="' . $data['id_joueur'] . '" value="' . $data['id_joueur'] . '">' . $data['nom'] . ' ' . $data['prenom'] ;
+                    echo '<div id="form_' . $data['id_joueur'] . '" style="display:none">"<input type="number" name="litre' . $data['id_joueur'] . '"></input><label for="litre">litre injeré</label>';
+                    echo '<input type="number" name="note' . $data['id_joueur'] . '"></input><label for="note">note du match</label>';
+                    echo '<input type="checkbox" name="vomis' . $data['id_joueur'] . '"></input><label for="note">vomis</label>';
+                    echo '<input type="text" name="status' . $data['id_joueur'] . '"></input><label for="status">poste</label></div>';
                 }
             ?>
         </div>
@@ -37,3 +42,16 @@
     </form>
     <a href="javascript:history.go(-1)">Retour</a>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.checkbx').click(function(){
+            var id = $(this).attr('id');
+            if($(this).is(':checked')){
+                document.getElementById('form_' + id).style.display = "block";
+            }else{
+                document.getElementById('form_' + id).style.display = "none";
+            }
+        });
+    });
+</script>

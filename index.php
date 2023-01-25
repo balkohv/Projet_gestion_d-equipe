@@ -43,19 +43,29 @@
         $lieu = $_POST['lieu'];
         $adverse = $_POST['adverse'];
         $retour = $_POST['retour'];
-        $joueurs = $bdd->query('SELECT id_joueur FROM joueur');
+        $joueurs = $bdd->query('SELECT id_joueur,vomis FROM joueur');
          while ($donnees = $joueurs->fetch()){
-            if ($_POST['joueur' . $donnees['id_joueur'] . '']){
-                echo "ok";
+            if (isset($_POST['joueur' . $donnees['id_joueur'] . ''])){
+                $req3 = $bdd->prepare('INSERT INTO jouer_rencontre(id_joueur, id_match, litres_ingerer, note, status) VALUES(:id_joueur, :id_match,:litres_ingerer,:note,:status)');
+                if($_POST['vomis'. $donnees['id_joueur'] . '']){
+                    $maj = $bd->prepare("UPDATE joueur set vomis=" . $donnees['vomis']+1 ."  WHERE id_joueur=" . $donnees['id_joueur'] ."");
+                    if(!$maj){
+                        die('Erreur : ' . $maj->errorInfo());
+                    }
+                    $maj->execute();
+                }
+
+                if (!$req3){
+                    die('Erreur : ' . $req3.errorInfo());
+                }
+                $req3->execute(array(
+                    'id_joueur' => $donnees['id_joueur'],
+                    'id_match' => $bdd->query('SELECT MAX(id_rencontre) FROM rencontre')->fetch()[0]+1,
+                    'litres_ingerer' => $_POST['litre'. $donnees['id_joueur'] . ''],
+                    'note' => $_POST['note'. $donnees['id_joueur'] . ''],
+                    'status' => $_POST['status'. $donnees['id_joueur'] . ''],
+                )); 
             }
-            $req3 = $bdd->prepare('INSERT INTO jouer_rencontre(id_joueur, id_match) VALUES(:id_joueur, :id_match)');
-            if (!$req3){
-                die('Erreur : ' . $req3.errorInfo());
-            }
-            $req3->execute(array(
-                'id_joueur' => $joueur,
-                'id_match' => $id_match,
-            )); 
         }
         $req2 = $bdd->prepare('INSERT INTO rencontre(date_heure, equipe_adverse, lieu, heure_retour) VALUES(:date_heure, :equipe_adverse, :lieu, :heure_retour)');
         //$req3 = $bdd->prepare('INSERT INTO jouer_rencontre(id_joueur, id_match) VALUES(:id_joueur, :id_match)');
