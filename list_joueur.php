@@ -3,11 +3,11 @@
         header('Location: login.php');
     }
 ?>
-<header>
+<head>
     <title>liste joueur</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="styles.css">
-</header>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
     <div class="navbar">
         <a href="index.php">Accueil</a>
@@ -39,7 +39,7 @@
             }
             $req = $bdd->query('SELECT * FROM joueur');
             while ($donnees = $req->fetch()){
-                echo '<tr  class="ligne">';
+                echo '<tr  class="ligne" id="' . $donnees['id_joueur'] . '">';
                 echo '<td>' . $donnees['nom'] . '</td>';
                 echo '<td>' . $donnees['prenom'] . '</td>';
                 echo '<td>' . $donnees['date_naissance'] . '</td>';
@@ -54,3 +54,10 @@
     </table>
     <a href="javascript:history.go(-1)">Retour</a>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $('.ligne').click(function(){
+        var id = $(this).attr('id');
+        window.location.href = 'joueur.php?id=' + id;
+    })
+</script>

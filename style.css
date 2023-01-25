@@ -1,7 +1,7 @@
 body{
     margin: 0;
     padding: 0;
-    background-color: #fff;
+    background-color: rgb(219, 218, 218);
     font-family: 'Roboto', sans-serif;
 
 }
@@ -23,4 +23,16 @@ body{
     display:block;
     margin-top: 2vh;
     margin-bottom: 2vh;
+}
+
+.ligne{
+    background-color: rgb(255, 255, 255);
+}
+
+.ligne>td{
+    padding:0px;
+    margin:0px;
+}
+.ligne:hover{
+    background-color: rgb(83, 83, 83);
 }
