@@ -97,10 +97,13 @@
         <a href="list_match.php">Liste des matchs</a>
         <a href="logout.php">deconnexion</a>
     </div>
-    <h1>acceuil</h1>
+    <h1>Acceuil</h1>
+    <h2>Application de gestion de l'équipe d'apéro de Toulouse </h2>
+    <h3>🏆 TOP 7 monde du tournois Heineken 🏆 </h3>
+    <h3>🏆 TOP 3 europe du tournois Poliakov 🏆 </h3>
    
     <div class="center">
-    <img src="ressource/123.jpg" class="center-img" width= "1200px";>
+    <img src="ressource/123.jpg" class="center-img" width= "1000px";>
 </div>
 
 
