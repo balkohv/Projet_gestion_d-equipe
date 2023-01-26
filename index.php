@@ -111,7 +111,7 @@
         <a href="list_match.php">Liste des matchs</a>
         <a href="logout.php">deconnexion</a>
     </div>
-<<<<<<< HEAD
+
     <h1>Acceuil</h1>
     <h2>Application de gestion de l'équipe d'apéro de Toulouse </h2>
     <h3>🏆 TOP 7 monde du tournois Heineken 🏆 </h3>
@@ -123,6 +123,6 @@
 
 
     <a class = "retour"href="javascript:history.go(-1)">Retour</a>
-=======
+
    
 </body>
