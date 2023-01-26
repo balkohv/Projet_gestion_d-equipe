@@ -36,6 +36,7 @@
             echo('<form action="modifier_joueur.php" method="post"><h2>'.$joueur['prenom'].' '.$joueur['nom'].'</h2>');
             echo('<p>match jouer : ' . $joueur['match_jouer'] . '</p>');
             echo('<p>match gagner : ' . $joueur['victoire'] . '</p>');
+            echo('<p>vomis : ' . $joueur['vomis'] . '</p>');
             echo('<p>date de naissance :<input type="date" name="date_anniversaire" value="'.$joueur['date_naissance'].'"></input></p>');
             echo('<p>taille : <input type="text" name="taille" value="'.$joueur['taille'].'"></input></p>');
             echo('<p>poids : <input type="text" name="poids" value="'.$joueur['poids'].'"></input></p>');
