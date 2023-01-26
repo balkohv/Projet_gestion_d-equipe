@@ -60,6 +60,10 @@ h1 {
     text-align: center;
     margin: 20px;
 }
+h2 {
+    text-align: center;
+    margin: 20px;
+}
 
 .retour {
     background-color: rgb(146, 25, 25);
