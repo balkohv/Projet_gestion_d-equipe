@@ -37,5 +37,5 @@
                 echo '</tr>';
             }
         ?>
-    <a href="javascript:history.go(-1)">Retour</a>
+     <a class = "retour"href="javascript:history.go(-1)">Retour</a>
 </body>

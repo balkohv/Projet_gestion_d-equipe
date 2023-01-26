@@ -85,3 +85,23 @@ h1 {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+
+.list_joueur_match{
+    display:block;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.ligne{
+    background-color: rgb(255, 255, 255);
+}
+
+.ligne>td{
+    padding:0px;
+    margin:0px;
+}
+.ligne:hover{
+    background-color: rgb(83, 83, 83);
+    
+}

@@ -29,5 +29,5 @@
         <input type="file" name="photo" placeholder="Photo du permis">
         <input type="submit" name="submit_joueur" value="Ajouter">
     </form>
-    <a href="javascript:history.go(-1)">Retour</a>
+    <a class = "retour"href="javascript:history.go(-1)">Retour</a>
 </body>
