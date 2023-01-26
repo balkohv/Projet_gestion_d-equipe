@@ -1,5 +1,5 @@
 <?php 
-    $bd = new PDO('mysql:host=localhost;port=3306;dbname=gestion_apero','root','root');
+    $bd = new PDO('mysql:host=localhost;port=3306;dbname=rwqjzdxw_gestion_apero','root','root');
     $query = $bd->prepare("UPDATE joueur set date_naissance=:date_naissance, taille=:taille, poids=:poids, poste_preferer=:poste, points_permis=:points  WHERE id_joueur=:id");
     if(!$query){
         die('Erreur : ' . $query->errorInfo());

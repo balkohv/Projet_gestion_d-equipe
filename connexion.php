@@ -16,7 +16,7 @@
                     return $string;
                 }
             if (isset($_POST['submit'])) {
-                $db = new PDO('mysql:host=localhost;port=3306;dbname=gestion_apero','root','root');
+                $db = new PDO('mysql:host=localhost;port=3306;dbname=rwqjzdxw_gestion_apero','root','root');
                 $query = $db->prepare('SELECT * FROM user WHERE nom_utilisateur=:log AND mdp=:mdp');
                 if (!$query){
                     die('Erreur : ' . $query.errorInfo());

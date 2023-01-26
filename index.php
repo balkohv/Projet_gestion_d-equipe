@@ -3,7 +3,7 @@
         header('Location: login.php');
     }
     try{
-        $bdd = new PDO('mysql:host=localhost;port=3306;dbname=gestion_apero','root','root');
+        $bdd = new PDO('mysql:host=localhost;port=3306;dbname=rwqjzdxw_gestion_apero','root','root');
     }
     catch (Exception $e)
     {
