@@ -98,5 +98,11 @@
         <a href="logout.php">deconnexion</a>
     </div>
     <h1>acceuil</h1>
-    <a href="javascript:history.go(-1)">Retour</a>
+   
+    <div class="center">
+    <img src="ressource/123.jpg" class="center-img" width= "1200px";>
+</div>
+
+
+    <a class = "retour"href="javascript:history.go(-1)">Retour</a>
 </body>
