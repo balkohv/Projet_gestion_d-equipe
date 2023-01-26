@@ -26,7 +26,7 @@
             <th>retour</th>
         </tr>
         <?php
-            $db = new PDO('mysql:host=localhost;port=3306;dbname=rwqjzdxw_gestion_apero','root','root');
+            $db = new PDO('mysql:host=localhost;port=3306;dbname=gestion_apero','root','root');
             $query = $db->query('SELECT * FROM rencontre');
             while ($data = $query->fetch()) {
                 echo '<tr class="ligne" id="' . $donnees['id_rencontre'] . '">';
@@ -37,5 +37,5 @@
                 echo '</tr>';
             }
         ?>
-     <a class = "retour"href="javascript:history.go(-1)">Retour</a>
+    <a href="javascript:history.go(-1)">Retour</a>
 </body>

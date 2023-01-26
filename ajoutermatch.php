@@ -27,7 +27,7 @@
         <div class="list_joueur_match">
             <h3>joueur participant</h3>
             <?php
-                $db = new PDO('mysql:host=localhost;port=3306;dbname=rwqjzdxw_gestion_apero','root','root');
+                $db = new PDO('mysql:host=localhost;port=3306;dbname=gestion_apero','root','root');
                 $query = $db->query('SELECT * FROM joueur');
                 while ($data = $query->fetch()) {
                     echo '<br><input class="checkbx" type="checkbox" name="joueur' . $data['id_joueur'] . '" id="' . $data['id_joueur'] . '" value="' . $data['id_joueur'] . '">' . $data['nom'] . ' ' . $data['prenom'] ;
@@ -40,7 +40,7 @@
         </div>
         <input type="submit" name="submit_match" value="submit_match">
     </form>
-    <a class = "retour"href="javascript:history.go(-1)">Retour</a>
+    <a href="javascript:history.go(-1)">Retour</a>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>

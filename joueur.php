@@ -22,7 +22,7 @@
         <h1>joueur</h1>
         <?php
             try{
-                $db = new PDO('mysql:host=localhost;port=3306;dbname=rwqjzdxw_gestion_apero','root','root');
+                $db = new PDO('mysql:host=localhost;port=3306;dbname=gestion_apero','root','root');
             }
             catch (Exception $e)
             {
@@ -33,6 +33,7 @@
                 'id_joueur' => $_GET['id'],
             ));
             $joueur = $query->fetch();
+            echo('<img src="' . $joueur['photo_permis'] . '" width="10%">');
             echo('<form action="modifier_joueur.php" method="post"><h2>'.$joueur['prenom'].' '.$joueur['nom'].'</h2>');
             echo('<p>match jouer : ' . $joueur['match_jouer'] . '</p>');
             echo('<p>match gagner : ' . $joueur['victoire'] . '</p>');

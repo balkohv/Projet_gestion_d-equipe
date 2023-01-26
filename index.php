@@ -1,9 +1,11 @@
 <?php
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
     if (!isset($_COOKIE['token'])){
         header('Location: login.php');
     }
     try{
-        $bdd = new PDO('mysql:host=localhost;port=3306;dbname=rwqjzdxw_gestion_apero','root','root');
+        $bdd = new PDO('mysql:host=localhost;port=3306;dbname=gestion_apero','root','root');
     }
     catch (Exception $e)
     {
@@ -18,9 +20,8 @@
         $poids = $_POST['poids'];
         $poste = $_POST['poste'];
         $points = $_POST['points'];
-        $photo = $_POST['photo'];
         // On se connecte à la base de données
-        $req1 = $bdd->prepare('INSERT INTO joueur(nom, prenom, date_naissance, taille, poids, poste_preferer, points_permis) VALUES(:nom, :prenom, :date_naissance, :taille, :poids, :poste_preferer, :points_permis)');
+        $req1 = $bdd->prepare('INSERT INTO joueur(nom, prenom, photo_permis, date_naissance, taille, poids, poste_preferer, points_permis) VALUES(:nom, :prenom, :photo, :date_naissance, :taille, :poids, :poste_preferer, :points_permis)');
 
         if (!$req1){
             die('Erreur : ' . $req1.errorInfo());
@@ -29,12 +30,33 @@
         $req1->execute(array(
             'nom' => $nom,
             'prenom' => $prenom,
+            'photo'=> 'photos/' . basename($_FILES['photo']['name']),
             'date_naissance' => $date_naissance,
             'taille' => $taille,
             'poids' => $poids,
             'poste_preferer' => $poste,
             'points_permis' => $points,
         )); 
+        if(isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0) { 
+            echo 'test';
+        }
+        $photo = $_FILES["photo"]["name"];
+        $photo = 'photos/' . basename($_FILES['photo']['name']);
+        if ($_FILES['photo']['size'] <= 8000000) {
+            //on récupère l'extension du fichier dans $extension
+            $fileInfo = pathinfo($_FILES['photo']['name']);
+            $extension = $fileInfo['extension'];
+            $allowedExtensions = ['jpg', 'jpeg', 'gif', 'png'];
+            if (in_array($extension, $allowedExtensions)) {
+                // On peut valider le fichier et le stocker définitivement
+                move_uploaded_file($_FILES['photo']['tmp_name'], 'photos/' . basename($_FILES['photo']['name']));
+            } else {
+                echo "Le fichier choisit doit avoir l'extension png, jpg, jpeg ou gif";
+            }
+        } else {
+            echo "fichier trop volumineux";
+        }    
+    
     }elseif(isset($_POST['submit_match'])){
         $req2 = $bdd->prepare('INSERT INTO rencontre(date_heure, equipe_adverse, lieu, heure_retour, victoire) VALUES(:date_heure, :equipe_adverse, :lieu, :heure_retour, 0)');
         //$req3 = $bdd->prepare('INSERT INTO jouer_rencontre(id_joueur, id_match) VALUES(:id_joueur, :id_match)');
@@ -111,18 +133,6 @@
         <a href="list_match.php">Liste des matchs</a>
         <a href="logout.php">deconnexion</a>
     </div>
-
-    <h1>Acceuil</h1>
-    <h2>Application de gestion de l'équipe d'apéro de Toulouse </h2>
-    <h3>🏆 TOP 7 monde du tournois Heineken 🏆 </h3>
-    <h3>🏆 TOP 3 europe du tournois Poliakov 🏆 </h3>
-   
-    <div class="center">
-    <img src="ressource/123.jpg" class="center-img" width= "1000px";>
-</div>
-
-
-    <a class = "retour"href="javascript:history.go(-1)">Retour</a>
-
-   
+    <h1>acceuil</h1>
+    <a href="javascript:history.go(-1)">Retour</a>
 </body>

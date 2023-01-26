@@ -20,18 +20,18 @@
     <h1>liste joueur</h1>
     <table class="tableau">
         <tr>
-            <th>nom</th>
-            <th>prenom</th>
-            <th>date de naissance</th>
-            <th>taille</th>
-            <th>poids</th>
-            <th>poste preferer</th>
-            <th>points sur le permis</th>
-            <th>photo du permis</th>
+            <td>nom</td>
+            <td>prenom</td>
+            <td>date de naissance</td>
+            <td>taille</td>
+            <td>poids</td>
+            <td>poste preferer</td>
+            <td>points sur le permis</td>
+            <td>photo du permis</td>
         </tr>
         <?php
             try{
-                $bdd = new PDO('mysql:host=localhost;port=3306;dbname=rwqjzdxw_gestion_apero','root','root');
+                $bdd = new PDO('mysql:host=localhost;port=3306;dbname=gestion_apero','root','root');
             }
             catch (Exception $e)
             {
@@ -52,7 +52,7 @@
             }
         ?>
     </table>
-    <a class = "retour"href="javascript:history.go(-1)">Retour</a>
+    <a href="javascript:history.go(-1)">Retour</a>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
