@@ -31,10 +31,10 @@
                 $query = $db->query('SELECT * FROM joueur');
                 while ($data = $query->fetch()) {
                     echo '<br><input class="checkbx" type="checkbox" name="joueur' . $data['id_joueur'] . '" id="' . $data['id_joueur'] . '" value="' . $data['id_joueur'] . '">' . $data['nom'] . ' ' . $data['prenom'] ;
-                    echo '<div id="form_' . $data['id_joueur'] . '" style="display:none">"<input type="number" name="litre' . $data['id_joueur'] . '"></input><label for="litre">litre injeré</label>';
-                    echo '<input type="number" name="note' . $data['id_joueur'] . '"></input><label for="note">note du match</label>';
-                    echo '<input type="checkbox" name="vomis' . $data['id_joueur'] . '"></input><label for="note">vomis</label>';
-                    echo '<input type="text" name="status' . $data['id_joueur'] . '"></input><label for="status">poste</label></div>';
+                    echo '<div id="form_' . $data['id_joueur'] . '" style="display:none">"<label for="litre">litre injeré</label><input type="number" name="litre' . $data['id_joueur'] . '"></input>';
+                    echo '<label for="note">note du match</label><input type="number" name="note' . $data['id_joueur'] . '"></input>';
+                    echo '<label for="note">vomi</label><input type="checkbox" name="vomis' . $data['id_joueur'] . '"></input>';
+                    echo '<label for="status">poste</label><input type="text" name="status' . $data['id_joueur'] . '"></input></div>';
                 }
             ?>
         </div>
