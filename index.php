@@ -36,25 +36,27 @@
             'points_permis' => $points,
         )); 
     }elseif(isset($_POST['submit_match'])){
-        ?><script>
-            console.log("test");
-        </script><?php
+        $req2 = $bdd->prepare('INSERT INTO rencontre(date_heure, equipe_adverse, lieu, heure_retour, victoire) VALUES(:date_heure, :equipe_adverse, :lieu, :heure_retour, 0)');
+        //$req3 = $bdd->prepare('INSERT INTO jouer_rencontre(id_joueur, id_match) VALUES(:id_joueur, :id_match)');
         $date_heure = $_POST['date_heure'];
         $lieu = $_POST['lieu'];
         $adverse = $_POST['adverse'];
         $retour = $_POST['retour'];
-        $joueurs = $bdd->query('SELECT id_joueur,vomis FROM joueur');
+        if (!$req2){
+            die('Erreur : ' . $req2.errorInfo());
+        }
+        $req2->execute(array(
+            'date_heure' => $date_heure,
+            'equipe_adverse' => $adverse,
+            'lieu' => $lieu,
+            'heure_retour' => $retour,
+        )); 
+        echo $_POST['vomis'. $donnees['id_joueur'] . ''];
+        $joueurs = $bdd->query('SELECT id_joueur,vomis,match_jouer FROM joueur');
          while ($donnees = $joueurs->fetch()){
             if (isset($_POST['joueur' . $donnees['id_joueur'] . ''])){
+                //nouveau match
                 $req3 = $bdd->prepare('INSERT INTO jouer_rencontre(id_joueur, id_match, litres_ingerer, note, status) VALUES(:id_joueur, :id_match,:litres_ingerer,:note,:status)');
-                if($_POST['vomis'. $donnees['id_joueur'] . '']){
-                    $maj = $bd->prepare("UPDATE joueur set vomis=" . $donnees['vomis']+1 ."  WHERE id_joueur=" . $donnees['id_joueur'] ."");
-                    if(!$maj){
-                        die('Erreur : ' . $maj->errorInfo());
-                    }
-                    $maj->execute();
-                }
-
                 if (!$req3){
                     die('Erreur : ' . $req3.errorInfo());
                 }
@@ -65,23 +67,35 @@
                     'note' => $_POST['note'. $donnees['id_joueur'] . ''],
                     'status' => $_POST['status'. $donnees['id_joueur'] . ''],
                 )); 
+                echo'test';
+                //ajout des match joué
+                $nouveaux_match = $bdd->prepare("UPDATE joueur set match_jouer=:match WHERE id_joueur=:id");
+                if(!$nouveaux_match){
+                    die('Erreur : ' . $nouveaux_match->errorInfo());
+                }
+                $nouveaux_match->execute(array(
+                    'match' => $donnees['match_jouer']+1,
+                    'id' => $donnees['id_joueur'],
+                )); 
+                //ajout des vomis
+                if($_POST['vomis'. $donnees['id_joueur'] . '']){
+                    $maj = $bdd->prepare("UPDATE joueur set vomis=" . $donnees['vomis']+1 ."  WHERE id_joueur=" . $donnees['id_joueur'] . "");
+                    if(!$maj){
+                        die('Erreur : ' . $maj->errorInfo());
+                    }
+                    $maj->execute();
+                }
+                //ajout des victoire
+                if($_POST['victoire']){
+                    $victoire = $bdd->prepare("UPDATE joueur set victoire=" . $donnees['victoire']+1 ."  WHERE id_joueur=" . $donnees['id_joueur'] ."");
+                    if(!$victoire){
+                        die('Erreur : ' . $victoire->errorInfo());
+                    }
+                    $victoire->execute();
+                }
             }
         }
-        $req2 = $bdd->prepare('INSERT INTO rencontre(date_heure, equipe_adverse, lieu, heure_retour) VALUES(:date_heure, :equipe_adverse, :lieu, :heure_retour)');
-        //$req3 = $bdd->prepare('INSERT INTO jouer_rencontre(id_joueur, id_match) VALUES(:id_joueur, :id_match)');
-        echo($_POST['joueur[]']);
-        if (!$req2){
-            die('Erreur : ' . $req2.errorInfo());
-        }
-
-        $req2->execute(array(
-            'date_heure' => $date_heure,
-            'lieu' => $lieu,
-            'equipe_adverse' => $adverse,
-            'heure_retour' => $retour,
-        )); 
     }
-    
 ?>
 <header>
     <title>acceuil</title>
@@ -97,6 +111,7 @@
         <a href="list_match.php">Liste des matchs</a>
         <a href="logout.php">deconnexion</a>
     </div>
+<<<<<<< HEAD
     <h1>Acceuil</h1>
     <h2>Application de gestion de l'équipe d'apéro de Toulouse </h2>
     <h3>🏆 TOP 7 monde du tournois Heineken 🏆 </h3>
@@ -108,4 +123,6 @@
 
 
     <a class = "retour"href="javascript:history.go(-1)">Retour</a>
+=======
+   
 </body>
